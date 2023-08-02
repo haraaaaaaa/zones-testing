@@ -1,4 +1,16 @@
-const zones = [];
+// zone creating
+const zones = [
+  {
+    zoneName: "PROBA 1",
+    zoneGrid: [
+      ["PROBA1", "PROBA1", "PROBA1", "PROBA1", "PROBA1"],
+      ["PROBA1", "PROBA1", "PROBA1", "PROBA1", "PROBA1"],
+      ["PROBA1", "PROBA1", "PROBA1", "PROBA1", "PROBA1"],
+      ["PROBA1", "PROBA1", "PROBA1", "PROBA1", "PROBA1"],
+      ["PROBA1", "PROBA1", "PROBA1", "PROBA1", "PROBA1"],
+    ],
+  },
+];
 
 const createZone = (zoneName, zoneSize) => {
   let xAxis, yAxis;
@@ -29,15 +41,18 @@ const createZone = (zoneName, zoneSize) => {
   };
 
   zones.push(createdZone);
-  return zoneGrid;
+  return createdZone;
 };
 
-let grid = createZone("test", "small");
+let createdZone = createZone("test", "small");
 
-const createTable = (tableName, xPos, yPos) => {
-  grid[yPos][xPos] = tableName;
+// table creating
+const createTable = (tableName, zoneName, xPos, yPos) => {
+  const selectedZone = zones.find((zone) => zone.zoneName === zoneName);
+
+  selectedZone.zoneGrid[yPos][xPos] = tableName;
 };
 
-createTable("proba", 5, 5);
+createTable("proba", "test", 5, 5);
 
 console.log(JSON.stringify(zones));
